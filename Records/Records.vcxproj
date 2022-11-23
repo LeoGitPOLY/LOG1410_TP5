@@ -18,6 +18,35 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AbsDirectoryComponent.h" />
+    <ClInclude Include="AbsDocument.h" />
+    <ClInclude Include="AbsInstanceComponent.h" />
+    <ClInclude Include="Agenda.h" />
+    <ClInclude Include="Artifact.h" />
+    <ClInclude Include="Directory.h" />
+    <ClInclude Include="DirectoryComponentContainer.h" />
+    <ClInclude Include="GenericDocument.h" />
+    <ClInclude Include="Instance.h" />
+    <ClInclude Include="InstanceComponentContainer.h" />
+    <ClInclude Include="Minutes.h" />
+    <ClInclude Include="Organization.h" />
+    <ClInclude Include="Register.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="AbsDirectoryComponent.cpp" />
+    <ClCompile Include="AbsDocument.cpp" />
+    <ClCompile Include="AbsInstanceComponent.cpp" />
+    <ClCompile Include="Agenda.cpp" />
+    <ClCompile Include="Artifact.cpp" />
+    <ClCompile Include="Directory.cpp" />
+    <ClCompile Include="GenericDocument.cpp" />
+    <ClCompile Include="Instance.cpp" />
+    <ClCompile Include="Minutes.cpp" />
+    <ClCompile Include="Organization.cpp" />
+    <ClCompile Include="Records.cpp" />
+    <ClCompile Include="Register.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -139,33 +168,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="AbsDirectoryComponent.cpp" />
-    <ClCompile Include="AbsDocument.cpp" />
-    <ClCompile Include="AbsInstanceComponent.cpp" />
-    <ClCompile Include="Directory.cpp" />
-    <ClCompile Include="GenericDocument.cpp" />
-    <ClCompile Include="Artifact.cpp" />
-    <ClCompile Include="Minutes.cpp" />
-    <ClCompile Include="Organization.cpp" />
-    <ClCompile Include="Records.cpp" />
-    <ClCompile Include="Agenda.cpp" />
-    <ClCompile Include="Instance.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="AbsDirectoryComponent.h" />
-    <ClInclude Include="AbsDocument.h" />
-    <ClInclude Include="AbsInstanceComponent.h" />
-    <ClInclude Include="Agenda.h" />
-    <ClInclude Include="Instance.h" />
-    <ClInclude Include="Directory.h" />
-    <ClInclude Include="DirectoryComponentContainer.h" />
-    <ClInclude Include="GenericDocument.h" />
-    <ClInclude Include="Minutes.h" />
-    <ClInclude Include="Artifact.h" />
-    <ClInclude Include="Organization.h" />
-    <ClInclude Include="InstanceComponentContainer.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

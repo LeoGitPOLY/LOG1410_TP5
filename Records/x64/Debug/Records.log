@@ -1,4 +1,2 @@
-﻿  Records.cpp
-Organization.obj : error LNK2019: unresolved external symbol "public: __cdecl GenericDocument::GenericDocument(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (??0GenericDocument@@QEAA@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@00@Z) referenced in function "private: void __cdecl Organization::initialize(void)" (?initialize@Organization@@AEAAXXZ)
-Organization.obj : error LNK2001: unresolved external symbol "public: virtual class GenericDocument * __cdecl GenericDocument::clone(void)const " (?clone@GenericDocument@@UEBAPEAV1@XZ)
-C:\Users\leopo\Desktop\Poly Uni\2022_COURS AUT\LOG1410_ANALYSE ET CONC. DES LOGICIELS\TP\LOG1410_TP5\x64\Debug\Records.exe : fatal error LNK1120: 2 unresolved externals
+﻿  Directory.cpp
+  Records.vcxproj -> C:\Users\leopo\Desktop\Poly Uni\2022_COURS AUT\LOG1410_ANALYSE ET CONC. DES LOGICIELS\TP\LOG1410_TP5\x64\Debug\Records.exe

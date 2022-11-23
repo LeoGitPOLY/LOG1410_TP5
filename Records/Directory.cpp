@@ -18,8 +18,7 @@ Directory::Directory(const Directory& mdd)
 
 Directory* Directory::clone(void) const
 {
-	// À compléter pour construire un nouvel objet Directory en appelant le constructeur de copie
-	return nullptr; // À remplacer
+	return new Directory(*this);
 }
 
 AbsDirectoryComponent& Directory::addDirectoryComponent(const AbsDirectoryComponent& member)
@@ -66,15 +65,22 @@ const AbsDocument* Directory::findDocument(std::string productName) const
 	// À compléter pour itérer sur les éléments contenus dans le répertoire à la recherche d'un document
 	// portant le nom reçu en argument. Si aucun document n'est trouvé, on retourne nullptr
 	const AbsDocument* foundDocument = nullptr;
-	
-	// À compléter
-	
+
+	/*for (auto&& dir : m_documents) {	
+		if (Directory* directory = dynamic_cast<Directory*>(dir))
+			dir.findDocument(productName);
+		else
+		{
+
+		}
+	}*/
+
 	return foundDocument;
 }
 
 std::ostream& Directory::printToStream(std::ostream& o) const
 {
-	// À compléter pour imprimer sur un stream une catégorie et son contenu
+	for (const DirectoryComponentPtr& dir : m_documents) { o << dir; }
 	return o;
 }
 
