@@ -14,6 +14,8 @@ Directory::Directory(const Directory& mdd)
 	: AbsDirectoryComponent(mdd.m_name)
 {
 	// À compléter pour copier tous les éléments contenus dans le répertoire
+	/*for (Dir doc : mdd.m_documents)
+		addDirectoryComponent(doc->clone())*/
 }
 
 Directory* Directory::clone(void) const
@@ -23,11 +25,10 @@ Directory* Directory::clone(void) const
 
 AbsDirectoryComponent& Directory::addDirectoryComponent(const AbsDirectoryComponent& member)
 {
-	// À compléter pour construire par clonage une copie de l'objet reçu en paramètre
-	// et l'insérer dans le conteneur de documents. On retourne une référence à l'objet
-	// qui vient d'être inséré dans le conteneur.
+	AbsDirectoryComponent* memberPtr = member.clone();
+	m_documents.push_back(DirectoryComponentPtr(memberPtr));
 
-	return *this; // À remplacer 
+	return *memberPtr;
 }
 
 DirectoryComponentIterator Directory::begin()
@@ -52,28 +53,23 @@ DirectoryComponentIterator Directory::end()
 
 void Directory::deleteDirectoryComponent(DirectoryComponentIterator_const child)
 {
-	// À compléter pour éliminer du répertoire l'élément auquel réfère l'itérateur
+	m_documents.erase(child);
 }
 
 void Directory::deleteAllComponents(void)
 {
-	// À compléter pour éliminer tous les éléments du répertoire
+	for (auto it = cbegin(); it != cend(); it++) {
+		deleteDirectoryComponent(it);
+	}
 }
 
 const AbsDocument* Directory::findDocument(std::string productName) const
 {
-	// À compléter pour itérer sur les éléments contenus dans le répertoire à la recherche d'un document
-	// portant le nom reçu en argument. Si aucun document n'est trouvé, on retourne nullptr
 	const AbsDocument* foundDocument = nullptr;
 
-	/*for (auto&& dir : m_documents) {	
-		if (Directory* directory = dynamic_cast<Directory*>(dir))
-			dir.findDocument(productName);
-		else
-		{
-
-		}
-	}*/
+	for (auto& doc : m_documents)
+		if (productName == doc->getName())
+			foundDocument = dynamic_cast<AbsDocument*>(doc.get());
 
 	return foundDocument;
 }
