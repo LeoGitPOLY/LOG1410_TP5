@@ -1,9 +1,11 @@
-///////////////////////////////////////////////////////////
-//  Instance.cpp
-//  Implementation of the Class Instance
-//  Created on:      2022-10-14
-//  Based on previous material (2022-03-19)
-///////////////////////////////////////////////////////////
+/****************************************************************************
+**
+** Classe Instance
+** Date: 2021-10-25
+** Based on previous material (2022-03-19)
+** Leonard Pouliot (2150965) et Xavier Pinsonneault (2020487)
+**
+****************************************************************************/
 
 #include "Instance.h"
 
@@ -15,13 +17,13 @@ Instance::Instance(std::string name)
 Instance::Instance(const Instance& mdd)
 	: AbsInstanceComponent(mdd.getName())
 {
-	// À compléter pour copier toutes les instances de niveau inférieur contenues dans l'instance}
+	for (auto& element : mdd.m_instanceContainer)
+		addInstanceComponent(*element);	
 }
 
 Instance* Instance::clone() const
 {
-	// À compléter pour construire un nouvel objet Instance en appelant le constructeur de copie
-	return nullptr; // À remplacer
+	return new Instance(*this);
 }
 
 
@@ -49,26 +51,37 @@ InstanceComponentIterator Instance::end()
 
 AbsInstanceComponent& Instance::addInstanceComponent(const AbsInstanceComponent& member)
 {
-	// À compléter pour construire par clonage une copie de l'objet reçu en paramètre
-	// et l'insérer dans le conteneur des instances. On retourne une référence à l'objet
-	// qui vient d'être inséré dans le conteneur.
+	AbsInstanceComponent* memberPtr = member.clone();
+	m_instanceContainer.push_back(InstanceComponentPtr(memberPtr));
 
-	return *this; // À remplacer 
+	return *memberPtr;
 }
 
 void Instance::deleteInstanceComponent(InstanceComponentIterator_const child)
 {
-	// À compléter pour éliminer des instances l'élément auquel réfère l'itérateur
+	m_instanceContainer.erase(child);
 }
 
 void Instance::deleteAllComponents(void)
 {
-	// À compléter pour éliminer tous les éléments de l'instance
+	for (auto it = begin(); it != end(); it++)
+		deleteInstanceComponent(it);
 }
 
 std::ostream& Instance::printToStream(std::ostream& o) const
 {
-	// À compléter pour imprimer sur un stream une instance et ses éléments
+	o << getName() << std::endl;
+	int index = 0;
+	m_indent++;
+
+	for (const InstanceComponentPtr& inst : m_instanceContainer)
+	{
+		index++;
+		indent(o);
+		o << index << " " << * inst;
+	}
+
+	m_indent--;
 	return o;
 }
 

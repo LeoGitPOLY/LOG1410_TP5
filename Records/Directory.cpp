@@ -1,5 +1,13 @@
-#include <string>
+/****************************************************************************
+**
+** Classe Directory
+** Date: 2021-10-25
+** Based on previous material (2022-03-19)
+** Leonard Pouliot (2150965) et Xavier Pinsonneault (2020487)
+**
+****************************************************************************/
 
+#include <string>
 #include "Directory.h"
 #include "AbsDocument.h"
 
@@ -13,9 +21,9 @@ Directory::Directory(std::string name)
 Directory::Directory(const Directory& mdd)
 	: AbsDirectoryComponent(mdd.m_name)
 {
-	// À compléter pour copier tous les éléments contenus dans le répertoire
-	/*for (Dir doc : mdd.m_documents)
-		addDirectoryComponent(doc->clone())*/
+	for (auto it = cbegin(); it != cend(); it++)
+		addDirectoryComponent(*it);
+
 }
 
 Directory* Directory::clone(void) const
@@ -58,25 +66,34 @@ void Directory::deleteDirectoryComponent(DirectoryComponentIterator_const child)
 
 void Directory::deleteAllComponents(void)
 {
-	for (auto it = cbegin(); it != cend(); it++) {
+	for (auto it = begin(); it != end(); it++)
 		deleteDirectoryComponent(it);
-	}
+
 }
 
 const AbsDocument* Directory::findDocument(std::string productName) const
 {
 	const AbsDocument* foundDocument = nullptr;
 
-	for (auto& doc : m_documents)
-		if (productName == doc->getName())
-			foundDocument = dynamic_cast<AbsDocument*>(doc.get());
+	for (auto it = cbegin(); it != cend(); it++)
+		if (it->getName() == productName)
+			foundDocument = dynamic_cast<AbsDocument*>(it->clone());
 
 	return foundDocument;
 }
 
 std::ostream& Directory::printToStream(std::ostream& o) const
 {
-	for (const DirectoryComponentPtr& dir : m_documents) { o << dir; }
+	o << "Directory: " << getName() << std::endl;
+	m_indent++;
+
+	for (const DirectoryComponentPtr& dir : m_documents)
+	{
+		indent(o);
+		o << *dir << std::endl;
+	}
+
+	m_indent--;
 	return o;
 }
 

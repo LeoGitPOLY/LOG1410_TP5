@@ -1,9 +1,11 @@
-///////////////////////////////////////////////////////////
-//  Artifact.cpp
-//  Implementation of the Class Artifact
-//  Created on:      2022-10-12
-//  Based on previous material (2022-03-19)
-///////////////////////////////////////////////////////////
+/****************************************************************************
+**
+** Classe Artifact
+** Date: 2021-10-25
+** Based on previous material (2022-03-19)
+** Leonard Pouliot (2150965) et Xavier Pinsonneault (2020487)
+**
+****************************************************************************/
 
 #include "Artifact.h"
 
@@ -24,7 +26,11 @@ const AbsDirectoryComponent& Artifact::getDocument() const
 
 std::ostream& Artifact::printToStream(std::ostream& o) const
 {
-	o << getName() << "," << m_document << std::endl;
+	o << "Artifact: " << getName() << std::endl;
+	
+	indent(o);
+	o << "    --> Document: " << getDocument().getName() << std::endl;
+
 	return o;
 }
 

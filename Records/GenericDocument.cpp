@@ -1,8 +1,17 @@
+/****************************************************************************
+**
+** Classe GenricDocument
+** Date: 2021-10-25
+** Based on previous material (2022-03-19)
+** Leonard Pouliot (2150965) et Xavier Pinsonneault (2020487)
+**
+****************************************************************************/
+
 #include <string>
 #include "GenericDocument.h"
 
 GenericDocument::GenericDocument(std::string name, std::string dateTime, std::string description)
-	:AbsDocument(name, dateTime), m_description(description)
+	:AbsDocument(name, dateTime)
 {
 }
 
